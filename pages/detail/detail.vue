@@ -5,11 +5,11 @@
 		</view>
 		<ad :unit-id="ad.two" ad-type="grid" grid-opacity="0.8" grid-count="5" ad-theme="white" v-if="ad.two"></ad>
 		<view class="func">
-			<button plain class="func-btn" open-type="share" v-if="coverDetail.inviteLockNum > 0">
+			<button plain class="func-btn" open-type="share" v-if="(audit==false) && (coverDetail.inviteLockNum > 0)">
 				<image src="/static/share.png" mode="" class="func-btn-img"></image>
 				邀请好友领取（{{lockEdInfo.inviteLockNum}}/{{coverDetail.inviteLockNum}}）
 			</button>
-			<button plain class="func-btn" @click="lookAd" v-if="coverDetail.lookVideoLockNum > 0">
+			<button plain class="func-btn" @click="lookAd" v-if="(audit==false) && (coverDetail.lookVideoLockNum > 0)">
 				<image src="/static/video.png" mode="" class="func-btn-img"></image>
 				观看视频领取（{{lockEdInfo.lookVideoLockNum}}/{{coverDetail.lookVideoLockNum}}）
 			</button>
@@ -23,11 +23,21 @@
 		<view class="modal" @touchmove.stop="handle" @click="closeModal" v-if="modalShow">
 			<view class="modal-content" @click.stop="openModal">
 				<view class="modal-content-body">
-					<view class="modal-content-body-title">
-						领取方式
+					<view v-if="coverDetail.link">
+						<view class="modal-content-body-title">
+							复制链接领取
+						</view>
+						<textarea :value="coverDetail.link" placeholder="" />
 					</view>
-					<text user-select decode class="modal-content-body-getdesc">{{coverDetail.getDesc}}</text>
-					<button plain class="modal-content-body-question" open-type="contact">有疑问？</button>
+					
+					<view v-else>
+						<view class="modal-content-body-title">
+							领取方式
+						</view>
+						
+						<text user-select decode class="modal-content-body-getdesc">{{coverDetail.getDesc}}</text>
+						<button plain class="modal-content-body-question" open-type="contact">有疑问？</button>
+					</view>
 				</view>
 				<image src="/static/close.png" mode="" class="modal-content-cancel" @click.stop="closeModal"></image>
 			</view>
@@ -43,6 +53,7 @@ export default {
 	data() {
 		return {
 			id: '',
+			audit: false,
 			modalShow: '',
 			coverDetail: {
 				inviteLockNum: 0,
@@ -58,7 +69,9 @@ export default {
 		};
 	},
 	onLoad(e) {
+		console.log(e)
 		this.id = e.id
+		this.audit = (e.audit == 'true')
 		this.getCoverDetail(true)
 	},
 	onShow(e) {
@@ -257,6 +270,13 @@ export default {
 					font-weight: 700;
 					text-align: center;
 					margin-bottom: 30rpx;
+				}
+				&-link{
+					font-size: 34rpx;
+					color: #333333;
+					font-weight: 700;
+					text-align: center;
+					width:100%;
 				}
 				&-getdesc{
 					text-align: center;

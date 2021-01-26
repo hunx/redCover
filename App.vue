@@ -20,6 +20,7 @@ export default {
 						},
 						success: (res) => {
 							// 存用户的openid
+							
 							this.globalData.openid = res.data.data.user.openid;
 							wx.setStorageSync('openid', res.data.data.user.openid);
 							this.inviteTrack(e.query.openid, this.globalData.openid, e.query.id)
@@ -37,11 +38,11 @@ export default {
 	},
 	globalData: {
 		api: {
-			login: 'https://f1086865-c582-4811-a6f8-b2e5c20b4a5f.bspapp.com/http/api/login',
-			cover: 'https://f1086865-c582-4811-a6f8-b2e5c20b4a5f.bspapp.com/http/api/cover',
-			coverDetail: 'https://f1086865-c582-4811-a6f8-b2e5c20b4a5f.bspapp.com/http/api/cover/detail',
-			lookVideo: 'https://f1086865-c582-4811-a6f8-b2e5c20b4a5f.bspapp.com/http/api/look/video',
-			inviteTrack: 'https://f1086865-c582-4811-a6f8-b2e5c20b4a5f.bspapp.com/http/api/invite/track',
+			login: 'https://d44ba090-a14e-45c9-a71d-37a676882106.bspapp.com/http/api/login',
+			cover: 'https://d44ba090-a14e-45c9-a71d-37a676882106.bspapp.com/http/api/cover',
+			coverDetail: 'https://d44ba090-a14e-45c9-a71d-37a676882106.bspapp.com/http/api/cover/detail',
+			lookVideo: 'https://d44ba090-a14e-45c9-a71d-37a676882106.bspapp.com/http/api/look/video',
+			inviteTrack: 'https://d44ba090-a14e-45c9-a71d-37a676882106.bspapp.com/http/api/invite/track',
 		},
 		openid: '',
 	},

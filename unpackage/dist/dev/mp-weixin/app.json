@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/user/user",
+    "pages/detail/detail"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "领封面服务 ",
+    "navigationBarBackgroundColor": "#f45d4c",
+    "backgroundColor": "#FFFFFF"
+  },
+  "tabBar": {
+    "backgroundColor": "#F7F7FA",
+    "color": "#707070",
+    "selectedColor": "#ffad00",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/static/tabbar/fuli.png",
+        "selectedIconPath": "/static/tabbar/fuli_fill.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "/static/tabbar/user.png",
+        "selectedIconPath": "/static/tabbar/user_fill.png"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

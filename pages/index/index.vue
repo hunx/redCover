@@ -1,6 +1,6 @@
 <template>
 	<view class="wrapper">
-		<view class="recommand" v-if="couponList.length > 0">
+		<view class="recommand" v-if="(audit==false) && couponList.length > 0">
 			<view class="recommand-content">
 				<view :class="['recommand-content-item', coupon.platform]" v-for="(coupon, i) in couponList" :key="i" @click="toCoupon(i)" >
 					<image :src="coupon.border" mode="" class="recommand-content-item-border" v-if="coupon.border"></image>
@@ -34,6 +34,7 @@
 				couponList: [],
 				coverList: [],
 				tips: [],
+				audit:false
 			}
 		},
 		onLoad() {
@@ -45,7 +46,7 @@
 		methods: {
 			goDetail(id){
 				uni.navigateTo({
-				    url: `/pages/detail/detail?id=${id}`
+				    url: `/pages/detail/detail?id=${id}&audit=${this.audit}`
 				});
 			},
 			getCoverList(){
@@ -58,6 +59,7 @@
 						this.couponList = res.data.data.couponList
 						this.coverList = res.data.data.coverList
 						this.tips = res.data.data.tips
+						this.audit = res.data.data.audit
 					},
 					complete() {
 						uni.hideLoading()

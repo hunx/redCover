@@ -14,6 +14,7 @@ var login = async (code) => {
 	}else{
 		//更新  暂时不需要
 	}
+	
 	var user = userQuery.data[0]
 	return user
 }

@@ -1,6 +1,13 @@
 const db = uniCloud.database();
 
 var cover = {
+	audit: async () => {
+		let audit = await db.collection('config').where({
+		name: "audit"
+		}).get();
+	
+		return audit.data[0].value
+	},
     list: async () => {
 		let list = await db.collection('cover').get();
 		return list.data
